@@ -6,11 +6,22 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/20 16:34:30 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:14:42 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
 char *get_next_line(int fd)
 {
-	
+	static int	i;
+
+// read file
+
+
+	i++;
 }
+
+
+
+

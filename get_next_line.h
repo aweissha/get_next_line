@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:01 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/20 16:37:59 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:49:11 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft.h"
 
 #endif
