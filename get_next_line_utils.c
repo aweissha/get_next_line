@@ -6,11 +6,23 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:10 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/24 17:45:26 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:38:12 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_strlen(const char *s)
+{
+	unsigned int	i;
+
+	if (s == NULL)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -76,18 +88,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (str_joined == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	if (s1 != NULL)
 	{
-		str_joined[i] = s1[i];
-		i++;
+		while (s1[i] != '\0')
+		{
+			str_joined[i] = s1[i];
+			i++;			
+		}
 	}
 	j = 0;
 	while (s2[j] != '\0')
 	{
-		str_joined[i] = s2[j];
-		i++;
+		str_joined[i + j] = s2[j];
 		j++;
 	}
 	str_joined[i] = '\0';
+	free((void *)s1);
 	return (str_joined);
 }
