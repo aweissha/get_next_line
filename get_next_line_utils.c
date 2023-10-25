@@ -6,40 +6,88 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:10 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/23 17:37:10 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:45:26 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// int	ft_strlen(const char *s)
-// {
-// 	unsigned int	i;
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	uc;
+	unsigned char	*p;
+	size_t			i;
 
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 		i++;
-// 	return (i);
-// }
+	uc = (unsigned char)c;
+	p = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+	{
+		p[i] = uc;
+		i++;
+	}
+	return (b);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	size_t	total;
+
+	total = count * size;
+	ptr = malloc(total);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, total);
+	return (ptr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
+}
 
 
-// char	*ft_strdup(const char *s1)
-// {
-// 	size_t	i;
-// 	size_t	len;
-// 	char	*str;
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	unsigned int	total_len;
+	char			*str_joined;
+	unsigned int	i;
+	unsigned int	j;
 
-// 	len = ft_strlen(s1);
-// 	str = malloc(len + 1);
-// 	if (str == NULL)
-// 		return (NULL);
-// 	i = 0;
-// 	while (s1[i] != '\0')
-// 	{
-// 		str[i] = s1[i];
-// 		i++;
-// 	}
-// 	str[i] = '\0';
-// 	return (str);
-// }
-
+	total_len = ft_strlen(s1) + ft_strlen(s2);
+	str_joined = malloc(total_len + 1);
+	if (str_joined == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		str_joined[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		str_joined[i] = s2[j];
+		i++;
+		j++;
+	}
+	str_joined[i] = '\0';
+	return (str_joined);
+}

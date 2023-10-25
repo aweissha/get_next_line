@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:01 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/23 17:37:03 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:45:23 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
-// char	*ft_strdup(const char *s1);
-// int		ft_strlen(const char *s);
 
 #endif
