@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:01 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/25 13:06:24 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:54:19 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 #  define BUFFER_SIZE 10
 # endif
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
 
+char	*get_next_line(int fd);
 int		ft_strlen(const char *s);
+void	*ft_memset(void *b, int c, size_t len);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
 
 #endif

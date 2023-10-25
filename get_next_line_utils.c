@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:10 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/25 11:38:12 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:46:05 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,36 +73,4 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)&s[i]);
 	return (NULL);
-}
-
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	unsigned int	total_len;
-	char			*str_joined;
-	unsigned int	i;
-	unsigned int	j;
-
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	str_joined = malloc(total_len + 1);
-	if (str_joined == NULL)
-		return (NULL);
-	i = 0;
-	if (s1 != NULL)
-	{
-		while (s1[i] != '\0')
-		{
-			str_joined[i] = s1[i];
-			i++;			
-		}
-	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		str_joined[i + j] = s2[j];
-		j++;
-	}
-	str_joined[i] = '\0';
-	free((void *)s1);
-	return (str_joined);
 }
