@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/27 17:14:43 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:20:24 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,13 @@ static char	*ft_strjoin(char *s1, char *s2)
 
 static char	*append_str(int fd, char *str)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	int		a;
 	char	*tmp;
 	
+	buffer = calloc(BUFFER_SIZE + 1, 1);
+	if(buffer == NULL)
+		return (NULL);
 	while (ft_strchr(buffer, '\n') == NULL)
 	{
 		a = read(fd, buffer, BUFFER_SIZE);
@@ -145,6 +148,7 @@ static char	*append_str(int fd, char *str)
 		str = ft_strjoin(tmp, buffer);
 		free(tmp);
 	}
+	free(buffer);
 	return (str);
 }
 
