@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:10 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/25 17:46:05 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:48:27 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	size_t	i;
 

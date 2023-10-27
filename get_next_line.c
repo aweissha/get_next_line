@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/25 20:35:02 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:39:24 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@
 // 	return (NULL);
 // }
 
-static char	*ft_strjoin(char const *s1, char const *s2)
+static char	*ft_strjoin(char *s1, char *s2)
 {
 	char			*str_joined;
 	unsigned int	i;
@@ -140,9 +140,9 @@ static char	*append_str(int fd, char *str)
 		if (a < 0)
 			return (NULL);
 		buffer[a] = '\0';
-		tmp = ft_strjoin(str, buffer);
-		free(str);
-		str = tmp;	
+		tmp = str;
+		str = ft_strjoin(tmp, buffer);
+		free(tmp);
 	}
 	return (str);
 }
@@ -159,7 +159,7 @@ static char	*extract_line(char *str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	line = calloc(i + 1, 1);
+	line = malloc(i + 1);
 	if (line == NULL)
 		return (NULL);
 	i = 0;
@@ -192,6 +192,7 @@ static char	*update_str(char *str)
 	j = 0;
 	while (str[i] != '\0')
 		new_str[j++] = str[i++];
+	new_str[j] = '\0';
 	free(str);
 	return (new_str);
 }
