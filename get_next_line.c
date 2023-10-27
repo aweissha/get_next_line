@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/10/27 11:39:24 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:14:43 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,13 @@ static char	*append_str(int fd, char *str)
 	int		a;
 	char	*tmp;
 	
-	a = 1;
-	while (ft_strchr(buffer, '\n') == NULL && a > 0)
+	while (ft_strchr(buffer, '\n') == NULL)
 	{
 		a = read(fd, buffer, BUFFER_SIZE);
 		if (a < 0)
 			return (NULL);
+		else if (a == 0)
+			break ;
 		buffer[a] = '\0';
 		tmp = str;
 		str = ft_strjoin(tmp, buffer);
@@ -147,69 +148,79 @@ static char	*append_str(int fd, char *str)
 	return (str);
 }
 
-static char	*extract_line(char *str)
-{
-	char	*line;
-	int		i;
+// static char	*extract_line(char *str)
+// {
+// 	char	*line;
+// 	int		i;
 
-	i = 0;
-	if (str[i] == '\0')
-		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	line = malloc(i + 1);
-	if (line == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-	{
-		line[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
-}
+// 	i = 0;
+// 	if (str[i] == '\0')
+// 		return (NULL);
+// 	while (str[i] != '\n' && str[i] != '\0')
+// 		i++;
+// 	if (str[i] == '\n')
+// 		i++;
+// 	line = malloc(i + 1);
+// 	if (line == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	while (str[i] != '\n' && str[i] != '\0')
+// 	{
+// 		line[i] = str[i];
+// 		i++;
+// 	}
+// 	if (str[i] == '\n')
+// 		line[i++] = '\n';
+// 	line[i] = '\0';
+// 	return (line);
+// }
 
-static char	*update_str(char *str)
+static char	*update_str(char *line)
 {
 	char	*new_str;
 	int		i;
-	int		j;
 
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (line[i] != '\n' && line[i] != '\0')
 		i++;
-	if (str[i] == '\0')
-		return (free(str), NULL);
-	i++;
-	new_str = calloc((ft_strlen(str) - i) + 1, 1);
-	if (new_str == NULL)
-		return (free(str), NULL);
-	j = 0;
-	while (str[i] != '\0')
-		new_str[j++] = str[i++];
-	new_str[j] = '\0';
-	free(str);
+	if (line[i] == '\0')
+		return (NULL);
+	new_str = ft_strdup(line + i + 1);
+	if (*new_str == '\0')
+	{
+		free(new_str);
+		new_str = NULL;
+	}
+	// i++;
+	// new_str = calloc((ft_strlen(str) - i) + 1, 1);
+	// if (new_str == NULL)
+	// 	return (free(str), NULL);
+	// j = 0;
+	// while (str[i] != '\0')
+	// 	new_str[j++] = str[i++];
+	// new_str[j] = '\0';
+	// free(str);
+	line[i + 1] = '\0';
 	return (new_str);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*str;
-	char		*return_str;
+	char		*line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	str = append_str(fd, str);
-	if (str == NULL)
+	line = append_str(fd, str);
+	if (line == NULL)
+	{
+		free(str);
+		str = NULL;
 		return (NULL);
-	return_str = extract_line(str);
-	str = update_str(str);
-	return (return_str);
+	}
+	// return_str = extract_line(str);
+	str = update_str(line);
+	return (line);
 }
 
 // #include <stdio.h>
