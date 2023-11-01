@@ -6,31 +6,11 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/11/01 11:36:57 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:53:21 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*ft_strdup(char *s1)
-{
-	size_t	i;
-	size_t	len;
-	char	*str;
-
-	len = ft_strlen(s1);
-	str = malloc(len + 1);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
 
 static char	*ft_strjoin(char *s1, char *s2)
 {
@@ -66,14 +46,17 @@ static char	*append_str(int fd, char *str)
 	int		a;
 	char	*tmp;
 
-	buffer = calloc(BUFFER_SIZE + 1, 1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
 	if (buffer == NULL)
 		return (NULL);
 	while (ft_strchr(buffer, '\n') == NULL)
 	{
 		a = read(fd, buffer, BUFFER_SIZE);
 		if (a < 0)
+		{
+			free(buffer);
 			return (NULL);
+		}
 		else if (a == 0)
 			break ;
 		buffer[a] = '\0';
@@ -101,8 +84,32 @@ static char	*update_str(char *line)
 		free(new_str);
 		new_str = NULL;
 	}
-	line[i + 1] = '\0';
 	return (new_str);
+}
+
+char	*extract_line(char *line)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n')
+		i++;
+	if (line[i] == '\n')
+		i++;
+	str = ft_calloc(i + 1, 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n')
+	{
+		str[i] = line[i];
+		i++;
+	}
+	if (line[i] == '\n')
+		str[i] = line[i];
+	free(line);
+	return (str);
 }
 
 char	*get_next_line(int fd)
@@ -120,6 +127,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	str = update_str(line);
+	line = extract_line(line);
 	return (line);
 }
 

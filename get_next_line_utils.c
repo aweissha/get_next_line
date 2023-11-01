@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:10 by aweissha          #+#    #+#             */
-/*   Updated: 2023/11/01 10:08:30 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:22:59 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,22 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	uc;
-	unsigned char	*p;
-	size_t			i;
-
-	uc = (unsigned char)c;
-	p = (unsigned char *)b;
-	i = 0;
-	while (i < len)
-	{
-		p[i] = uc;
-		i++;
-	}
-	return (b);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	char	*ptr;
 	size_t	total;
+	size_t	i;
 
 	total = count * size;
 	ptr = malloc(total);
 	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(ptr, total);
+	i = 0;
+	while (i < total)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
 	return (ptr);
 }
 
@@ -73,4 +57,24 @@ char	*ft_strchr(char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)&s[i]);
 	return (NULL);
+}
+
+char	*ft_strdup(char *s1)
+{
+	size_t	i;
+	size_t	len;
+	char	*str;
+
+	len = ft_strlen(s1);
+	str = malloc(len + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:35:01 by aweissha          #+#    #+#             */
-/*   Updated: 2023/11/01 10:08:50 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:54:08 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 
 char	*get_next_line(int fd);
 int		ft_strlen(const char *s);
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(char *s, int c);
+char	*ft_strdup(char *s1);
 
 #endif
