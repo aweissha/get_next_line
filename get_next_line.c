@@ -6,7 +6,7 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/11/01 18:53:21 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:28:14 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char	*update_str(char *line)
 	return (new_str);
 }
 
-char	*extract_line(char *line)
+static char	*extract_line(char *line)
 {
 	int		i;
 	char	*str;
