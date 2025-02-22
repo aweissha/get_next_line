@@ -6,13 +6,13 @@
 /*   By: aweissha <aweissha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:33:38 by aweissha          #+#    #+#             */
-/*   Updated: 2023/11/03 09:57:48 by aweissha         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:02:32 by aweissha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char			*str_joined;
 	unsigned int	i;
@@ -40,7 +40,7 @@ static char	*ft_strjoin(char *s1, char *s2)
 	return (str_joined);
 }
 
-static char	*append_str(int fd, char *str)
+char	*append_str(int fd, char *str)
 {
 	char	*buffer;
 	int		a;
@@ -68,7 +68,7 @@ static char	*append_str(int fd, char *str)
 	return (str);
 }
 
-static char	*update_str(char *line)
+char	*update_str(char *line)
 {
 	char	*new_str;
 	int		i;
@@ -87,7 +87,7 @@ static char	*update_str(char *line)
 	return (new_str);
 }
 
-static char	*extract_line(char *line)
+char	*extract_line(char *line)
 {
 	int		i;
 	char	*str;
